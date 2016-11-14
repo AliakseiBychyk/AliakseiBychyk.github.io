@@ -11,22 +11,33 @@ fetch(url)
       newsHeaderText = document.createElement('h1');
       newsHeaderText.innerHTML = json.source.toUpperCase();
       newsHeader.appendChild(newsHeaderText);
-      
-      //const data = {} = json; //it destructures json
 
       for (i = 0; i < json.articles.length; i++) {
           
           let listArticle = document.createElement('li');
+        
+          let article = {} = json.articles[i];
+          //let artKeys = Object.keys(article); 
+          //artKeys.forEach(addElementToList);
+          for (let key in article) {
+              //addElementToList(key);
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = key + ": " + article[key];
+            listArticle.appendChild(newDiv);
 
-          //let artKeys = Object.keys(json.articles[i]); //it gives me an array of keys 
-
-          for (let prop in json.articles[i]) {
-            var newDiv = document.createElement('div');
-            newDiv.innerHTML = `${prop}: ` + json.articles[i][prop];
-            listArticle.appendChild(newDiv); 
-          }
+          }  
+      
           newsList.appendChild(listArticle);
       }
     })  
   )
   .catch(error => console.log(error));
+
+/*
+let addElementToList = (key) => {
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = key + ": " + article[key];
+    listArticle.appendChild(newDiv);
+};
+
+*/
