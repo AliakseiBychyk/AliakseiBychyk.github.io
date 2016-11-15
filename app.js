@@ -18,26 +18,19 @@ fetch(url)
         
           let article = {} = json.articles[i];
           //let artKeys = Object.keys(article); 
-          //artKeys.forEach(addElementToList);
+          // artKeys.forEach(addElementToList(item, article[item], listArticle));                 
           for (let key in article) {
-              //addElementToList(key);
-            let newDiv = document.createElement('div');
-            newDiv.innerHTML = key + ": " + article[key];
-            listArticle.appendChild(newDiv);
-
-          }  
-      
+              addElementToList(key, article[key], listArticle);
+          }        
           newsList.appendChild(listArticle);
       }
     })  
   )
   .catch(error => console.log(error));
 
-/*
-let addElementToList = (key) => {
+let addElementToList = (x, y, list) => {
     let newDiv = document.createElement('div');
-    newDiv.innerHTML = key + ": " + article[key];
-    listArticle.appendChild(newDiv);
+    newDiv.innerHTML = x + ": " + y;
+    list.appendChild(newDiv);
 };
 
-*/
