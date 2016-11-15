@@ -20,17 +20,26 @@ fetch(url)
           //let artKeys = Object.keys(article); 
           // artKeys.forEach(addElementToList(item, article[item], listArticle));                 
           for (let key in article) {
-              addElementToList(key, article[key], listArticle);
-          }        
+              addElementToList(key, article[key], listArticle);         
+          }   
+          addLinkToList(article.url, listArticle);
+
           newsList.appendChild(listArticle);
       }
     })  
   )
   .catch(error => console.log(error));
 
-let addElementToList = (x, y, list) => {
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = x + ": " + y;
-    list.appendChild(newDiv);
+
+var addElementToList = (x, y, list) => {
+  let newDiv = document.createElement('div');
+  newDiv.innerHTML = x + ": " + y;
+  list.appendChild(newDiv);
 };
 
+var addLinkToList = (x, list) => {
+  let newLink = document.createElement('a');
+  newLink.setAttribute('href', x);
+  newLink.innerHTML = 'Read more...';
+  list.appendChild(newLink);
+};
