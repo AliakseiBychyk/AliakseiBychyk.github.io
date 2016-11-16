@@ -14,17 +14,17 @@ fetch(url)
 
       for (i = 0; i < json.articles.length; i++) {
           
-          let listArticle = document.createElement('li');
+        let listArticle = document.createElement('li');
         
-          let article = {} = json.articles[i];
+        let article = {} = json.articles[i];
           //let artKeys = Object.keys(article); 
           // artKeys.forEach(addElementToList(item, article[item], listArticle));                 
-          for (let key in article) {
-              addElementToList(key, article[key], listArticle);         
-          }   
-          addLinkToList(article.url, listArticle);
+        for (let key in article) {
+          addElementToList(key, article[key], listArticle);         
+        }   
+        addLinkToList(article.url, listArticle);
 
-          newsList.appendChild(listArticle);
+        newsList.appendChild(listArticle);
       }
     })  
   )
