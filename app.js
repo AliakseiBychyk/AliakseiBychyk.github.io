@@ -1,6 +1,7 @@
 
 const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
 const url = `https://newsapi.org/v1/articles?source=bbc-news&apiKey=${apiKey}`;
+const urlLink = 'http://newsapi.org';
 
 const newsHeader = document.querySelector('header');
 const newsList = document.querySelector('ul');
@@ -12,14 +13,18 @@ fetch(url)
       newsHeaderText.innerHTML = json.source.toUpperCase();
       newsHeader.appendChild(newsHeaderText);
 
+      const newsSourceText = 'News powered by: BBC News';
+      addLinkToList(urlLink, newsHeader, newsSourceText);
+
       json.articles.forEach(article => {
         const listArticle = document.createElement('li');
         const artKeys = Object.keys(article);
        
         artKeys.forEach(key => {
           addElementToList(key, article[key], listArticle);
-        });        
-        addLinkToList(article.url, listArticle);
+        });
+        const readMore = 'Read more...';        
+        addLinkToList(article.url, listArticle, readMore);
         newsList.appendChild(listArticle);
       });
     })  
@@ -31,9 +36,9 @@ function addElementToList(x, y, list) {
   list.appendChild(newDiv);
 };
 
-function addLinkToList(x, list) {
+function addLinkToList(x, list, text) {
   const newLink = document.createElement('a');
   newLink.setAttribute('href', x);
-  newLink.innerHTML = 'Read more...';
+  newLink.innerHTML = text;
   list.appendChild(newLink);
 };
