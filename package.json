@@ -5,7 +5,9 @@
   "author": "Aliaksei Bychyk <aliaksei_bychyk@epam.com>",
   "license": "NLPL",
   "scripts": {
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "script": "babel app.js",
+    "script-compile": "babel app.js --watch --out-file app-compiled.js"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
