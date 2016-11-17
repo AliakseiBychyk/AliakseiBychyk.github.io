@@ -10,7 +10,7 @@ var newsList = document.querySelector('ul');
 fetch(url).then(function (response) {
   return response.json();
 }).then(function (json) {
-  newsHeaderText = document.createElement('h1');
+  var newsHeaderText = document.createElement('h1');
   newsHeaderText.innerHTML = json.source.toUpperCase();
   newsHeader.appendChild(newsHeaderText);
 
