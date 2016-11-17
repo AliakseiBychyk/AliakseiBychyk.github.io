@@ -16,15 +16,14 @@ fetch(url)
         const listArticle = document.createElement('li');
         const artKeys = Object.keys(article);
        
-       artKeys.forEach(key => {
-         addElementToList(key, article[key], listArticle);
-       });
-       addLinkToList(article.url, listArticle);
-       newsList.appendChild(listArticle);
-     });
+        artKeys.forEach(key => {
+          addElementToList(key, article[key], listArticle);
+        });        
+        addLinkToList(article.url, listArticle);
+        newsList.appendChild(listArticle);
+      });
     })  
   .catch(error => console.log(error));
-
 
 function addElementToList(x, y, list) {
   const newDiv = document.createElement('div');
