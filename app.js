@@ -19,15 +19,14 @@ fetch(url)
     json.articles.forEach(article => {
       const listArticle = document.createElement('li');
       const artKeys = Object.keys(article);
-       
-      artKeys.forEach(key => {
-        addElementToList(key, article[key], listArticle);
-      });
+      
+      artKeys.forEach(key => addElementToList(key, article[key], listArticle));
+
       const readMore = 'Read more...';        
       addLinkToList(article.url, listArticle, readMore);
       newsList.appendChild(listArticle);
-      });
-    })  
+    });
+  })  
   .catch(error => console.log(error));
 
 function addElementToList(x, y, list) {
