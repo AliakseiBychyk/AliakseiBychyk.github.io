@@ -9,23 +9,23 @@ const newsList = document.querySelector('ul');
 fetch(url)
   .then(response => response.json())
   .then (json => {
-      newsHeaderText = document.createElement('h1');
-      newsHeaderText.innerHTML = json.source.toUpperCase();
-      newsHeader.appendChild(newsHeaderText);
+    newsHeaderText = document.createElement('h1');
+    newsHeaderText.innerHTML = json.source.toUpperCase();
+    newsHeader.appendChild(newsHeaderText);
 
-      const newsSourceText = 'News powered by: BBC News';
-      addLinkToList(urlLink, newsHeader, newsSourceText);
+    const newsSourceText = 'News powered by: News API';
+    addLinkToList(urlLink, newsHeader, newsSourceText);
 
-      json.articles.forEach(article => {
-        const listArticle = document.createElement('li');
-        const artKeys = Object.keys(article);
+    json.articles.forEach(article => {
+      const listArticle = document.createElement('li');
+      const artKeys = Object.keys(article);
        
-        artKeys.forEach(key => {
-          addElementToList(key, article[key], listArticle);
-        });
-        const readMore = 'Read more...';        
-        addLinkToList(article.url, listArticle, readMore);
-        newsList.appendChild(listArticle);
+      artKeys.forEach(key => {
+        addElementToList(key, article[key], listArticle);
+      });
+      const readMore = 'Read more...';        
+      addLinkToList(article.url, listArticle, readMore);
+      newsList.appendChild(listArticle);
       });
     })  
   .catch(error => console.log(error));
