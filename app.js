@@ -1,4 +1,3 @@
-
 const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
 const url = `https://newsapi.org/v1/articles?source=bbc-news&apiKey=${apiKey}`;
 const urlLink = 'http://newsapi.org';
