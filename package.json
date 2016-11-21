@@ -17,6 +17,7 @@
     "babel-polyfill": "^6.16.0",
     "fetch-ie8": "^1.4.3",
     "fetch-polyfill": "^0.8.2",
+    "promise-polyfill": "^6.0.2",
     "whatwg-fetch": "^2.0.1"
   }
 }
