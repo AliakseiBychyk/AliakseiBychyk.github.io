@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "script": "babel app.js",
-    "script-compile": "babel app.js --watch --out-file app-compiled.js"
+    "script-compile": "babel scripts/app.js --watch --out-file scripts/app-compiled.js"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
