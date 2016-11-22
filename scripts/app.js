@@ -21,8 +21,13 @@ fetch(url)
       
       artKeys.forEach(key => news.addElementToList(key, article[key], listArticle));
 
+      const alt = article.title;
+      const urlToImg = article.urlToImage;
+      news.addImageToList(urlToImg, alt, listArticle);
+
       const readMore = 'Read more...';        
-      news.addLinkToList(article.url, listArticle, readMore);
+      news.addLinkToList(article.url, listArticle, readMore);   
+      
       newsList.appendChild(listArticle);
     });
   })  
@@ -45,9 +50,19 @@ function newsDAO() {
 
   this.addLinkToList = function(x, list, text) {
     const newLink = document.createElement('a');
+    newLink.setAttribute('class', 'links');
     newLink.setAttribute('href', x);
     newLink.innerHTML = text;
     list.appendChild(newLink);
+  };
+
+  this.addImageToList = function(image, alt, list) {
+    const newImage = document.createElement('img');
+    newImage.setAttribute('src', image);
+    newImage.setAttribute('alt', alt);
+    newImage.setAttribute('class', 'imgClass');
+    newImage.innerHTML;
+    list.appendChild(newImage);
   };
 };
 

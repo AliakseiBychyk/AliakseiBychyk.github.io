@@ -25,8 +25,13 @@ fetch(url).then(function (response) {
       return news.addElementToList(key, article[key], listArticle);
     });
 
+    var alt = article.title;
+    var urlToImg = article.urlToImage;
+    news.addImageToList(urlToImg, alt, listArticle);
+
     var readMore = 'Read more...';
     news.addLinkToList(article.url, listArticle, readMore);
+
     newsList.appendChild(listArticle);
   });
 }).catch(function (error) {
@@ -49,8 +54,18 @@ function newsDAO() {
 
   this.addLinkToList = function (x, list, text) {
     var newLink = document.createElement('a');
+    newLink.setAttribute('class', 'links');
     newLink.setAttribute('href', x);
     newLink.innerHTML = text;
     list.appendChild(newLink);
+  };
+
+  this.addImageToList = function (image, alt, list) {
+    var newImage = document.createElement('img');
+    newImage.setAttribute('src', image);
+    newImage.setAttribute('alt', alt);
+    newImage.setAttribute('class', 'imgClass');
+    newImage.innerHTML;
+    list.appendChild(newImage);
   };
 };
