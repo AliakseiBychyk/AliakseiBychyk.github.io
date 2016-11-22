@@ -2,7 +2,7 @@ const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
 const url = `https://newsapi.org/v1/articles?source=bbc-news&apiKey=${apiKey}`;
 const urlLink = 'http://newsapi.org';
 
-const news = new newsDAO();
+
 const newsHeader = document.querySelector('header');
 const newsList = document.querySelector('ul');
 
@@ -10,7 +10,9 @@ fetch(url)
   .then(response => response.json())
   .then (json => {
 
-    news.addHeaderSource(json.source, newsHeader);
+    const news = new newsDAO(json);
+    
+    news.addHeaderSource(newsHeader);
 
     const newsSourceText = 'News powered by: News API';
     news.addLinkToList(urlLink, newsHeader, newsSourceText);
@@ -19,11 +21,13 @@ fetch(url)
       const listArticle = document.createElement('li');
       const artKeys = Object.keys(article);
       
-      artKeys.forEach(key => news.addElementToList(key, article[key], listArticle));
+      artKeys.slice(0, 3).forEach(key => news.addElementToList(article[key], listArticle));
 
       const alt = article.title;
       const urlToImg = article.urlToImage;
       news.addImageToList(urlToImg, alt, listArticle);
+
+      artKeys.slice(3).forEach(key => news.addElementToList(article[key], listArticle));
 
       const readMore = 'Read more...';        
       news.addLinkToList(article.url, listArticle, readMore);   
@@ -34,18 +38,14 @@ fetch(url)
   .catch(error => console.log(error));
 
 
-function newsDAO() {
+function newsDAO(json) {
 
-  this.addHeaderSource = function(source, header) {
+  this.json = json;
+
+  this.addHeaderSource = function(header) {
     const newsHeaderText = document.createElement('h1');
-    newsHeaderText.innerHTML = source.toUpperCase();
+    newsHeaderText.innerHTML = json.source.toUpperCase();
     header.appendChild(newsHeaderText);
-  };
-
-  this.addElementToList = function(x, y, list) {
-    const newDiv = document.createElement('div');
-    newDiv.innerHTML = x + ": " + y;
-    list.appendChild(newDiv);
   };
 
   this.addLinkToList = function(x, list, text) {
@@ -54,6 +54,12 @@ function newsDAO() {
     newLink.setAttribute('href', x);
     newLink.innerHTML = text;
     list.appendChild(newLink);
+  };
+
+  this.addElementToList = function(x, list) {
+    const newDiv = document.createElement('div');
+    newDiv.innerHTML = x;
+    list.appendChild(newDiv);
   };
 
   this.addImageToList = function(image, alt, list) {

@@ -1,4 +1,4 @@
-.articles > li, header {
+.articles > li {
     margin: 10px;
     padding: 10px;
 }
@@ -10,6 +10,26 @@
 }
 
 .articles > li >div:nth-child(2) {
-    font-size: 20px;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+}
+
+.articles > li >div:nth-child(3) {
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#mainHeader {
+    margin-left: 64px;
+}
+
+#mainHeader > h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 60px;
+}
+
+.imgClass {
+    float: left;
+    width: 80vw;
 }
