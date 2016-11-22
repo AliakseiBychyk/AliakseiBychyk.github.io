@@ -4,7 +4,6 @@ var apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
 var url = 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=' + apiKey;
 var urlLink = 'http://newsapi.org';
 
-var news = new newsDAO();
 var newsHeader = document.querySelector('header');
 var newsList = document.querySelector('ul');
 
@@ -12,7 +11,9 @@ fetch(url).then(function (response) {
   return response.json();
 }).then(function (json) {
 
-  news.addHeaderSource(json.source, newsHeader);
+  var news = new newsDAO(json);
+
+  news.addHeaderSource(newsHeader);
 
   var newsSourceText = 'News powered by: News API';
   news.addLinkToList(urlLink, newsHeader, newsSourceText);
@@ -21,13 +22,17 @@ fetch(url).then(function (response) {
     var listArticle = document.createElement('li');
     var artKeys = Object.keys(article);
 
-    artKeys.forEach(function (key) {
-      return news.addElementToList(key, article[key], listArticle);
+    artKeys.slice(0, 3).forEach(function (key) {
+      return news.addElementToList(article[key], listArticle);
     });
 
     var alt = article.title;
     var urlToImg = article.urlToImage;
     news.addImageToList(urlToImg, alt, listArticle);
+
+    artKeys.slice(3).forEach(function (key) {
+      return news.addElementToList(article[key], listArticle);
+    });
 
     var readMore = 'Read more...';
     news.addLinkToList(article.url, listArticle, readMore);
@@ -38,18 +43,14 @@ fetch(url).then(function (response) {
   return console.log(error);
 });
 
-function newsDAO() {
+function newsDAO(json) {
 
-  this.addHeaderSource = function (source, header) {
+  this.json = json;
+
+  this.addHeaderSource = function (header) {
     var newsHeaderText = document.createElement('h1');
-    newsHeaderText.innerHTML = source.toUpperCase();
+    newsHeaderText.innerHTML = json.source.toUpperCase();
     header.appendChild(newsHeaderText);
-  };
-
-  this.addElementToList = function (x, y, list) {
-    var newDiv = document.createElement('div');
-    newDiv.innerHTML = x + ": " + y;
-    list.appendChild(newDiv);
   };
 
   this.addLinkToList = function (x, list, text) {
@@ -58,6 +59,12 @@ function newsDAO() {
     newLink.setAttribute('href', x);
     newLink.innerHTML = text;
     list.appendChild(newLink);
+  };
+
+  this.addElementToList = function (x, list) {
+    var newDiv = document.createElement('div');
+    newDiv.innerHTML = x;
+    list.appendChild(newDiv);
   };
 
   this.addImageToList = function (image, alt, list) {
