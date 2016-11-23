@@ -23,6 +23,11 @@ img {
     .article {
         width: 90vw;
     }
+    
+    .article div {
+        text-align: center;
+    }
+
 }
 
 @media (max-width: 1400px) and (min-width: 700px) {
