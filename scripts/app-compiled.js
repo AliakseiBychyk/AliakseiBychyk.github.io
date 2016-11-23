@@ -1,37 +1,35 @@
 'use strict';
 
 var apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
-var url = 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=' + apiKey;
+var newsSource = 'bbc-news';
+var url = 'https://newsapi.org/v1/articles?source=' + newsSource + '&apiKey=' + apiKey;
 var urlLink = 'http://newsapi.org';
 
-var newsHeader = document.querySelector('header');
-var newsList = document.querySelector('ul');
+var newsHeader = document.querySelector('#header');
+var newsBlock = document.querySelector('main');
 
-var newsDAO = {
-  addHeaderSource: function addHeaderSource(source, header) {
-    var newsHeaderText = document.createElement('h1');
-    newsHeaderText.innerHTML = source.toUpperCase();
-    header.appendChild(newsHeaderText);
+var newsMethods = {
+
+  addElement: function addElement(content, place) {
+    var newElement = document.createElement('div');
+    newElement.innerHTML = content;
+    place.appendChild(newElement);
   },
-  addLinkToList: function addLinkToList(x, list, text) {
+
+  addLink: function addLink(url, text, place) {
     var newLink = document.createElement('a');
-    newLink.setAttribute('class', 'links');
-    newLink.setAttribute('href', x);
+    newLink.setAttribute('href', url);
     newLink.innerHTML = text;
-    list.appendChild(newLink);
+    place.appendChild(newLink);
   },
-  addElementToList: function addElementToList(x, list) {
-    var newDiv = document.createElement('div');
-    newDiv.innerHTML = x;
-    list.appendChild(newDiv);
-  },
-  addImageToList: function addImageToList(image, alt, list) {
-    var newImage = document.createElement('img');
-    newImage.setAttribute('src', image);
-    newImage.setAttribute('alt', alt);
-    newImage.setAttribute('class', 'imgClass');
-    newImage.innerHTML;
-    list.appendChild(newImage);
+
+  addImage: function addImage(url, alt, classAttr, place) {
+    var newImg = document.createElement('img');
+    newImg.setAttribute('src', url);
+    newImg.setAttribute('alt', alt);
+    newImg.setAttribute('class', classAttr);
+    newImg.innerHTML;
+    place.appendChild(newImg);
   }
 };
 
@@ -39,32 +37,31 @@ fetch(url).then(function (response) {
   return response.json();
 }).then(function (json) {
 
-  var headerSource = json.source;
-  newsDAO.addHeaderSource(headerSource, newsHeader);
+  var headerSource = json.source.toUpperCase();
+  newsMethods.addElement(headerSource, newsHeader);
 
   var newsSourceText = 'News powered by: News API';
-  newsDAO.addLinkToList(urlLink, newsHeader, newsSourceText);
+  newsMethods.addLink(urlLink, newsSourceText, newsHeader);
 
   json.articles.forEach(function (article) {
-    var listArticle = document.createElement('li');
+
+    var newsArticle = document.createElement('div');
+    newsArticle.setAttribute('class', 'article');
     var artKeys = Object.keys(article);
 
     artKeys.slice(0, 3).forEach(function (key) {
-      return newsDAO.addElementToList(article[key], listArticle);
+      return newsMethods.addElement(article[key], newsArticle);
     });
 
     var alt = article.title;
     var urlToImg = article.urlToImage;
-    newsDAO.addImageToList(urlToImg, alt, listArticle);
-
-    artKeys.slice(3).forEach(function (key) {
-      return newsDAO.addElementToList(article[key], listArticle);
-    });
+    var imgClass = 'image';
+    newsMethods.addImage(urlToImg, alt, imgClass, newsArticle);
 
     var readMore = 'Read more...';
-    newsDAO.addLinkToList(article.url, listArticle, readMore);
+    newsMethods.addLink(article.url, readMore, newsArticle);
 
-    newsList.appendChild(listArticle);
+    newsBlock.appendChild(newsArticle);
   });
 }).catch(function (error) {
   return console.log(error);

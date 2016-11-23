@@ -1,69 +1,65 @@
 const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
-const url = `https://newsapi.org/v1/articles?source=bbc-news&apiKey=${apiKey}`;
+const newsSource = 'bbc-news';
+const url = `https://newsapi.org/v1/articles?source=${newsSource}&apiKey=${apiKey}`;
 const urlLink = 'http://newsapi.org';
 
 
-const newsHeader = document.querySelector('header');
-const newsList = document.querySelector('ul');
+const newsHeader = document.querySelector('#header');
+const newsBlock = document.querySelector('main');
 
-const newsDAO =  {
-  addHeaderSource: function(source, header) {
-    const newsHeaderText = document.createElement('h1');
-    newsHeaderText.innerHTML = source.toUpperCase();
-    header.appendChild(newsHeaderText);
+const newsMethods = {
+
+  addElement: function(content, place) {
+    const newElement = document.createElement('div');
+    newElement.innerHTML = content;
+    place.appendChild(newElement);
   },
-  addLinkToList: function(x, list, text) {
+
+  addLink: function(url, text, place) {
     const newLink = document.createElement('a');
-    newLink.setAttribute('class', 'links');
-    newLink.setAttribute('href', x);
+    newLink.setAttribute('href', url);
     newLink.innerHTML = text;
-    list.appendChild(newLink);
+    place.appendChild(newLink);
   },
-  addElementToList: function(x, list) {
-    const newDiv = document.createElement('div');
-    newDiv.innerHTML = x;
-    list.appendChild(newDiv);
-  },
-  addImageToList: function(image, alt, list) {
-    const newImage = document.createElement('img');
-    newImage.setAttribute('src', image);
-    newImage.setAttribute('alt', alt);
-    newImage.setAttribute('class', 'imgClass');
-    newImage.innerHTML;
-    list.appendChild(newImage);
+
+  addImage: function(url, alt, classAttr, place) {
+    const newImg = document.createElement('img');
+    newImg.setAttribute('src', url);
+    newImg.setAttribute('alt', alt);
+    newImg.setAttribute('class', classAttr);
+    newImg.innerHTML;
+    place.appendChild(newImg);
   }
 };
 
-
 fetch(url)
   .then(response => response.json())
-  .then (json => {
-    
-    const headerSource = json.source;
-    newsDAO.addHeaderSource(headerSource, newsHeader);
+  .then(json => {
+
+    const headerSource = json.source.toUpperCase();
+    newsMethods.addElement(headerSource, newsHeader); 
 
     const newsSourceText = 'News powered by: News API';
-    newsDAO.addLinkToList(urlLink, newsHeader, newsSourceText);
+    newsMethods.addLink(urlLink, newsSourceText, newsHeader);
 
     json.articles.forEach(article => {
-      const listArticle = document.createElement('li');
+
+      const newsArticle = document.createElement('div');
+      newsArticle.setAttribute('class', 'article');
       const artKeys = Object.keys(article);
-      
-      artKeys.slice(0, 3).forEach(key => newsDAO.addElementToList(article[key], listArticle));
+
+      artKeys.slice(0, 3).forEach(key => newsMethods.addElement(article[key], newsArticle));
 
       const alt = article.title;
       const urlToImg = article.urlToImage;
-      newsDAO.addImageToList(urlToImg, alt, listArticle);
+      const imgClass = 'image'
+      newsMethods.addImage(urlToImg, alt, imgClass, newsArticle);
 
-      artKeys.slice(3).forEach(key => newsDAO.addElementToList(article[key], listArticle));
+      const readMore = 'Read more...';
+      newsMethods.addLink(article.url, readMore, newsArticle);
 
-      const readMore = 'Read more...';        
-      newsDAO.addLinkToList(article.url, listArticle, readMore);   
-      
-      newsList.appendChild(listArticle);
+      newsBlock.appendChild(newsArticle);
     });
-  })  
+  })
   .catch(error => console.log(error));
-
-
 
