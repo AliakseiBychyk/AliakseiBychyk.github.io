@@ -7,7 +7,7 @@ module.exports = {
 
     entry: "./scripts/app.js",
     output: {
-         filename: "build.js",
+         filename: "[name].js",
          library: "home"
     },
 
@@ -20,8 +20,12 @@ module.exports = {
     devtool: NODE_ENV === 'development' ? "cheap-inline-module-source-map" : null,
 
     plugins: [
+        new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(NODE_ENV)
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "common"
         })
     ],
 
@@ -40,7 +44,11 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             loader: 'babel-loader'
-        }]
+        }, {
+            test: /\.css$/,
+            loader: 'style!css!autoprefixer?browsers=last 2 versions'
+        }
+        ]
     }
 };
 
