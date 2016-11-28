@@ -3,14 +3,36 @@ body {
 }
 
 .article {
-    margin: 10px;
+    position: relative;
+    margin: auto;
     padding: 20px;
     display: inline-block;
     width: 28vw;
+    align-self: auto;
 }
 
 img {
     width: inherit;
+}
+
+@media (max-width: 808px) {
+    .article {
+        width: 90vw;
+    }   
+    .article div {
+        text-align: center;
+    }
+    .article > div:nth-child(2) {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    }
+}
+
+@media (max-width: 1400px) and (min-width: 808px) {
+    .article {
+        width: 44vw;
+    }
 }
 
 .article > div:nth-child(1) {
@@ -18,24 +40,6 @@ img {
     text-decoration: underline;
     font-style: italic;
 }
-
-@media (max-width: 700px) {
-    .article {
-        width: 90vw;
-    }
-    
-    .article div {
-        text-align: center;
-    }
-
-}
-
-@media (max-width: 1400px) and (min-width: 700px) {
-    .article {
-        width: 38vw;
-    }
-}
-
 
 .article > div:nth-child(2) {
     font-size: 30px;

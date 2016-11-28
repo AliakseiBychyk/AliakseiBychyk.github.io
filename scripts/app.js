@@ -1,3 +1,5 @@
+import newsMethods from './newsMethods.js';
+
 const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
 const newsSource = 'bbc-news';
 const url = `https://newsapi.org/v1/articles?source=${newsSource}&apiKey=${apiKey}`;
@@ -6,31 +8,6 @@ const urlLink = 'http://newsapi.org';
 
 const newsHeader = document.querySelector('#header');
 const newsBlock = document.querySelector('main');
-
-const newsMethods = {
-
-  addElement: function(content, place) {
-    const newElement = document.createElement('div');
-    newElement.innerHTML = content;
-    place.appendChild(newElement);
-  },
-
-  addLink: function(url, text, place) {
-    const newLink = document.createElement('a');
-    newLink.setAttribute('href', url);
-    newLink.innerHTML = text;
-    place.appendChild(newLink);
-  },
-
-  addImage: function(url, alt, classAttr, place) {
-    const newImg = document.createElement('img');
-    newImg.setAttribute('src', url);
-    newImg.setAttribute('alt', alt);
-    newImg.setAttribute('class', classAttr);
-    newImg.innerHTML;
-    place.appendChild(newImg);
-  }
-};
 
 fetch(url)
   .then(response => response.json())
