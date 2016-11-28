@@ -47,6 +47,9 @@ module.exports = {
         }, {
             test: /\.css$/,
             loader: 'style!css!autoprefixer?browsers=last 2 versions'
+        }, {
+            test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+            loader: 'file-loader'
         }
         ]
     }
