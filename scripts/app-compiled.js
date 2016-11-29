@@ -15,35 +15,35 @@ var newsHeader = document.querySelector('#header');
 var newsBlock = document.querySelector('main');
 
 fetch(url).then(function (response) {
-      return response.json();
+  return response.json();
 }).then(function (json) {
 
-      var headerSource = json.source.toUpperCase();
-      _newsMethods2.default.addElement(headerSource, newsHeader);
+  var headerSource = json.source.toUpperCase();
+  _newsMethods2.default.addElement(headerSource, newsHeader);
 
-      var newsSourceText = 'News powered by: News API';
-      _newsMethods2.default.addLink(urlLink, newsSourceText, newsHeader);
+  var newsSourceText = 'News powered by: News API';
+  _newsMethods2.default.addLink(urlLink, newsSourceText, newsHeader);
 
-      json.articles.forEach(function (article) {
+  json.articles.forEach(function (article) {
 
-            var newsArticle = document.createElement('div');
-            newsArticle.setAttribute('class', 'article');
-            var artKeys = Object.keys(article);
+    var newsArticle = document.createElement('div');
+    newsArticle.setAttribute('class', 'article');
+    var artKeys = Object.keys(article);
 
-            artKeys.slice(0, 3).forEach(function (key) {
-                  return _newsMethods2.default.addElement(article[key], newsArticle);
-            });
+    artKeys.slice(0, 3).forEach(function (key) {
+      return _newsMethods2.default.addElement(article[key], newsArticle);
+    });
 
-            var alt = article.title;
-            var urlToImg = article.urlToImage;
-            var imgClass = 'image';
-            _newsMethods2.default.addImage(urlToImg, alt, imgClass, newsArticle);
+    var alt = article.title;
+    var urlToImg = article.urlToImage;
+    var imgClass = 'image';
+    _newsMethods2.default.addImage(urlToImg, alt, imgClass, newsArticle);
 
-            var readMore = 'Read more...';
-            _newsMethods2.default.addLink(article.url, readMore, newsArticle);
+    var readMore = 'Read more...';
+    _newsMethods2.default.addLink(article.url, readMore, newsArticle);
 
-            newsBlock.appendChild(newsArticle);
-      });
+    newsBlock.appendChild(newsArticle);
+  });
 }).catch(function (error) {
-      return console.log(error);
+  return console.log(error);
 });

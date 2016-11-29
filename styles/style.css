@@ -1,69 +1,69 @@
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 .article {
-    position: relative;
-    margin: auto;
-    padding: 20px;
-    display: inline-block;
-    width: 28vw;
-    align-self: auto;
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  display: inline-block;
+  width: 28vw;
+  align-self: auto;
 }
 
 img {
-    width: inherit;
+  width: inherit;
 }
 
 @media (max-width: 808px) {
-    .article {
-        width: 90vw;
-    }   
-    .article div {
-        text-align: center;
-    }
-    .article > div:nth-child(2) {
+  .article {
+    width: 90vw;
+  }
+  .article div {
+    text-align: center;
+  }
+  .article > div:nth-child(2) {
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    }
+  }
 }
 
 @media (max-width: 1400px) and (min-width: 808px) {
-    .article {
-        width: 44vw;
-    }
+  .article {
+    width: 44vw;
+  }
 }
 
 .article > div:nth-child(1) {
-    font-size: 14px;
-    text-decoration: underline;
-    font-style: italic;
+  font-size: 14px;
+  text-decoration: underline;
+  font-style: italic;
 }
 
 .article > div:nth-child(2) {
-    font-size: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
 }
 
 .articles > div:nth-child(3) {
-    font-size: 16px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #header {
-    background-color: red;
-    padding: 5px;
-    margin-left: 0px;
-    color: white;
+  background-color: red;
+  padding: 5px;
+  margin-left: 0px;
+  color: white;
 }
 
 #header > a {
-    color: white;
+  color: white;
 }
 
 #header > div {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 60px;
 }

@@ -2,5 +2,8 @@
 {
     "editor.renderIndentGuides": true,
     "javascript.validate.enable": false,
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
+    "editor.wrappingIndent": "indent",
+    "editor.formatOnType": true,
+    "editor.tabSize": 2
 }

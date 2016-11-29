@@ -14,7 +14,7 @@ fetch(url)
   .then(json => {
 
     const headerSource = json.source.toUpperCase();
-    newsMethods.addElement(headerSource, newsHeader); 
+    newsMethods.addElement(headerSource, newsHeader);
 
     const newsSourceText = 'News powered by: News API';
     newsMethods.addLink(urlLink, newsSourceText, newsHeader);
@@ -39,4 +39,3 @@ fetch(url)
     });
   })
   .catch(error => console.log(error));
-

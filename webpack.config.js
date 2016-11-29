@@ -5,67 +5,64 @@ const webpack = require('webpack');
 
 module.exports = {
 
-    entry: "./scripts/app.js",
-    output: {
-         filename: "[name].js",
-         library: "home"
-    },
+  entry: "./scripts/app.js",
+  output: {
+    filename: "[name].js",
+    library: "home"
+  },
 
-    watch: NODE_ENV == 'development',
+  watch: NODE_ENV == 'development',
 
-    watchOptions: {
-        aggregateTimeout: 100
-    },
+  watchOptions: {
+    aggregateTimeout: 100
+  },
 
-    devtool: NODE_ENV === 'development' ? "cheap-inline-module-source-map" : null,
+  devtool: NODE_ENV === 'development' ? "cheap-inline-module-source-map" : null,
 
-    plugins: [
-        new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(NODE_ENV)
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "common"
-        })
-    ],
+  plugins: [
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(NODE_ENV)
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "common"
+    })
+  ],
 
-    resolve: {
-        modulesDirectories: ['node_modules'],
-        extensions: ['', '.js']
-    },
+  resolve: {
+    modulesDirectories: ['node_modules'],
+    extensions: ['', '.js']
+  },
 
-    resolveLoader: {
-        modulesDirectories: ['node_modules'],
-        moduleTemplates: ['*-loader', '*'],
-        extensions: ['', '.js']
-    },
+  resolveLoader: {
+    modulesDirectories: ['node_modules'],
+    moduleTemplates: ['*-loader', '*'],
+    extensions: ['', '.js']
+  },
 
-    module: {
-        loaders: [{
-            test: /\.js$/,
-            loader: 'babel-loader'
-        }, {
-            test: /\.css$/,
-            loader: 'style!css!autoprefixer?browsers=last 2 versions'
-        }, {
-            test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-            loader: 'file-loader'
-        }
-        ]
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel-loader'
+    }, {
+      test: /\.css$/,
+      loader: 'style!css!autoprefixer?browsers=last 2 versions'
+    }, {
+      test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+      loader: 'file-loader'
     }
+    ]
+  }
 };
 
 if (NODE_ENV === 'production') {
-    module.exports.plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                drop_console: true,
-                unsafe: true
-            }
-        })
-    );
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_console: true,
+        unsafe: true
+      }
+    })
+  );
 }
-
-
- 
