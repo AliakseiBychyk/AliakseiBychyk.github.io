@@ -50,8 +50,12 @@ module.exports = {
     }, {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
       loader: 'file-loader'
-    }
-    ]
+    }]
+  },
+
+  devServer: {
+    host: 'localhost',
+    port: 8080
   }
 };
 
