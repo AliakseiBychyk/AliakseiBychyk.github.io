@@ -1,4 +1,4 @@
-const newsMethods = {
+const DOMManipulationUtilities = {
 
   addElement: function (content, place) {
     const newElement = document.createElement('div');
@@ -24,4 +24,4 @@ const newsMethods = {
 
 };
 
-export default newsMethods;
+export default DOMManipulationUtilities;
