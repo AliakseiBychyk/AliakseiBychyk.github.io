@@ -38,4 +38,4 @@ fetch(url)
       newsBlock.appendChild(newsArticle);
     });
   })
-  .catch(error => console.log(error));
+  .catch(error => console.log("Unexpected error: " + error));
