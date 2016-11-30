@@ -5,8 +5,13 @@ const webpack = require('webpack');
 
 module.exports = {
 
-  entry: "./scripts/app.js",
+  entry: {
+    main: "./scripts/app.js",
+    start: "./scripts/start.js"
+  },
+
   output: {
+    path: __dirname + "/public/js",
     filename: "[name].js",
     library: "home"
   },
