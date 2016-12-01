@@ -5,10 +5,10 @@ const webpack = require('webpack');
 
 module.exports = {
 
-  context: __dirname + "/scripts",
+
 
   entry: {
-    start: "./start.js"
+    start: "./scripts/start.js"
   },
 
   output: {

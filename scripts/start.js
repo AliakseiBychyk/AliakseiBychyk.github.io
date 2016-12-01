@@ -3,10 +3,23 @@ import DOMManipulationUtilities from './DOMManipulationUtilities.js';
 const newsHeader = document.querySelector('#header');
 const dom = DOMManipulationUtilities;
 
-dom.addButton('button', 'Go to the BBC news', newsHeader);
+dom.addButton('button', 'start-button', 'Go to the BBC news', newsHeader);
 
-document.getElementsByTagName('button').onclick = function () {
-  define (['./app.js'], function (app) {
+
+document.getElementById('start-button').onclick = function () {
+  define(['./app.js'], function (app) {
+    alert("Hello");
     app();
   });
 };
+
+
+/*
+document.getElementById('start-button').onclick = function () {
+  define(function (require) {
+    let app = require('./app.js');
+    alert("Hello");
+    app();
+  });
+};
+*/

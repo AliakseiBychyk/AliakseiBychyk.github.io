@@ -22,9 +22,10 @@ const DOMManipulationUtilities = {
     place.appendChild(newImg);
   },
 
-  addButton: function (typeAttr, caption, place) {
+  addButton: function (typeAttr, idValue, caption, place) {
     const newButton = document.createElement('button');
     newButton.setAttribute('type', typeAttr);
+    newButton.setAttribute('id', idValue);
     newButton.innerHTML = caption;
     place.appendChild(newButton);
   }
