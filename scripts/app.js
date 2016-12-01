@@ -7,8 +7,6 @@ export function app() {
   const url = `https://newsapi.org/v1/articles?source=${newsSource}&apiKey=${apiKey}`;
   const urlLink = 'http://newsapi.org';
 
-  alert('app is called');
-
   fetch(url)
     .then(response => response.json())
     .then(json => {

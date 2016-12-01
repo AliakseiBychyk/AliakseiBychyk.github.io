@@ -5,14 +5,12 @@ const webpack = require('webpack');
 
 module.exports = {
 
-
   entry: {
     start: "./scripts/start.js"
   },
 
   output: {
     path: __dirname + "/public/js",
-    publicPath: "/",
     filename: "[name].js",
     library: "[name]"
   },
@@ -31,8 +29,7 @@ module.exports = {
       NODE_ENV: JSON.stringify(NODE_ENV)
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "common",
-      minChunks: 2
+      name: "common"
     })
   ],
 
