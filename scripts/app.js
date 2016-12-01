@@ -1,11 +1,11 @@
 import DOMManipulationUtilities from './DOMManipulationUtilities.js';
 
-const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
-const newsSource = 'bbc-news';
-const url = `https://newsapi.org/v1/articles?source=${newsSource}&apiKey=${apiKey}`;
-const urlLink = 'http://newsapi.org';
-
 export function app() {
+
+  const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
+  const newsSource = 'bbc-news';
+  const url = `https://newsapi.org/v1/articles?source=${newsSource}&apiKey=${apiKey}`;
+  const urlLink = 'http://newsapi.org';
 
   fetch(url)
     .then(response => response.json())
