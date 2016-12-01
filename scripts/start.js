@@ -23,3 +23,11 @@ document.getElementById('start-button').onclick = function () {
   });
 };
 */
+/*
+document.getElementById('start-button').onclick = function() {
+  require.ensure(['./app.js'], function (require) {
+    let app = require('./app.js');
+    app();
+  });
+};
+*/

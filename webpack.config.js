@@ -6,7 +6,6 @@ const webpack = require('webpack');
 module.exports = {
 
 
-
   entry: {
     start: "./scripts/start.js"
   },
