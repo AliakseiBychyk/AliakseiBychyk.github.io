@@ -5,37 +5,40 @@ const newsSource = 'bbc-news';
 const url = `https://newsapi.org/v1/articles?source=${newsSource}&apiKey=${apiKey}`;
 const urlLink = 'http://newsapi.org';
 
-fetch(url)
-  .then(response => response.json())
-  .then(json => {
+export function app() {
 
-    const newsHeader = document.querySelector('#header');
-    const newsBlock = document.querySelector('main');
-    const dom = DOMManipulationUtilities;
+  fetch(url)
+    .then(response => response.json())
+    .then(json => {
 
-    const headerSource = json.source.toUpperCase();
-    dom.addElement(headerSource, newsHeader);
+      const newsHeader = document.querySelector('#header');
+      const newsBlock = document.querySelector('main');
+      const dom = DOMManipulationUtilities;
 
-    const newsSourceText = 'News powered by: News API';
-    dom.addLink(urlLink, newsSourceText, newsHeader);
+      const headerSource = json.source.toUpperCase();
+      dom.addElement(headerSource, newsHeader);
 
-    json.articles.forEach(article => {
+      const newsSourceText = 'News powered by: News API';
+      dom.addLink(urlLink, newsSourceText, newsHeader);
 
-      const newsArticle = document.createElement('div');
-      newsArticle.setAttribute('class', 'article');
-      const artKeys = Object.keys(article);
+      json.articles.forEach(article => {
 
-      artKeys.slice(0, 3).forEach(key => dom.addElement(article[key], newsArticle));
+        const newsArticle = document.createElement('div');
+        newsArticle.setAttribute('class', 'article');
+        const artKeys = Object.keys(article);
 
-      const alt = article.title;
-      const urlToImg = article.urlToImage;
-      const imgClass = 'image'
-      dom.addImage(urlToImg, alt, imgClass, newsArticle);
+        artKeys.slice(0, 3).forEach(key => dom.addElement(article[key], newsArticle));
 
-      const readMore = 'Read more...';
-      dom.addLink(article.url, readMore, newsArticle);
+        const alt = article.title;
+        const urlToImg = article.urlToImage;
+        const imgClass = 'image'
+        dom.addImage(urlToImg, alt, imgClass, newsArticle);
 
-      newsBlock.appendChild(newsArticle);
-    });
-  })
-  .catch(error => console.log("Unexpected error: " + error));
+        const readMore = 'Read more...';
+        dom.addLink(article.url, readMore, newsArticle);
+
+        newsBlock.appendChild(newsArticle);
+      });
+    })
+    .catch(error => console.log("Unexpected error: " + error));
+};

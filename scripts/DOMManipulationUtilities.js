@@ -20,6 +20,13 @@ const DOMManipulationUtilities = {
     newImg.setAttribute('class', classAttr);
     newImg.innerHTML;
     place.appendChild(newImg);
+  },
+
+  addButton: function (typeAttr, caption, place) {
+    const newButton = document.createElement('button');
+    newButton.setAttribute('type', typeAttr);
+    newButton.innerHTML = caption;
+    place.appendChild(newButton);
   }
 
 };
