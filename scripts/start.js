@@ -8,5 +8,6 @@ dom.addButton('button', 'start-button', 'Go to the BBC news', newsHeader);
 document.getElementById('start-button').onclick = function () {
   define(['./app.js'], function (app) {
     app.app();
+    document.getElementById('start-button').style.visibility = "hidden";
   });
 };
