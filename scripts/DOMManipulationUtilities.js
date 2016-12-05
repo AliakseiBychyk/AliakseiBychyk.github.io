@@ -1,22 +1,29 @@
-const DOMManipulationUtilities = ( () => {
+const DOMManipulationUtilities = (() => {
+
+  const _create = {
+    div: () => document.createElement('div'),
+    a: () => document.createElement('a'),
+    img: () => document.createElement('img'),
+    button: () => document.createElement('button')
+  }
 
   return {
 
     addBlock: (content, place) => {
-      const newBlock = document.createElement('div');
+      const newBlock = _create.div();
       newBlock.innerHTML = content;
       place.appendChild(newBlock);
     },
 
     addLink: (url, text, place) => {
-      const newLink = document.createElement('a');
+      const newLink = _create.a();
       newLink.setAttribute('href', url);
       newLink.innerHTML = text;
       place.appendChild(newLink);
     },
 
     addImage: (url, alt, classAttr, place) => {
-      const newImg = document.createElement('img');
+      const newImg = _create.img();
       newImg.setAttribute('src', url);
       newImg.setAttribute('alt', alt);
       newImg.setAttribute('class', classAttr);
@@ -25,14 +32,13 @@ const DOMManipulationUtilities = ( () => {
     },
 
     addButton: (typeAttr, idValue, caption, place) => {
-      const newButton = document.createElement('button');
+      const newButton = _create.button();
       newButton.setAttribute('type', typeAttr);
       newButton.setAttribute('id', idValue);
       newButton.innerHTML = caption;
       place.appendChild(newButton);
     }
   }
-
 })();
 
 export default DOMManipulationUtilities;
