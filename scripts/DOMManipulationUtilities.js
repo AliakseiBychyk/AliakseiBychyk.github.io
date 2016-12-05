@@ -7,6 +7,18 @@ const DOMManipulationUtilities = (() => {
     button: () => document.createElement('button')
   }
 
+  function addAttribute(element, array) {
+    let nextIndex = 0;
+    return {
+      next: () => nextIndex < array.length ?
+        {
+          add: (name) => element.setAttribute(name, array[nextIndex++]),
+          done: false
+        } :
+        { done: true }
+    }
+  }
+
   return {
 
     addBlock: (content, place) => {
@@ -24,9 +36,11 @@ const DOMManipulationUtilities = (() => {
 
     addImage: (url, alt, classAttr, place) => {
       const newImg = _create.img();
-      newImg.setAttribute('src', url);
-      newImg.setAttribute('alt', alt);
-      newImg.setAttribute('class', classAttr);
+      const attrNames = ['src', 'alt', 'class'];
+      const attrValues = [url, alt, classAttr];
+      attrNames.forEach(attrName => {
+        addAttribute(newImg, attrValues).next().add(attrName);
+      })
       newImg.innerHTML;
       place.appendChild(newImg);
     },
