@@ -29,6 +29,7 @@
   "babel": {
     "plugins": [
       "transform-runtime"
-    ]
+    ],
+     "presets": ["es2015"]
   }
 }

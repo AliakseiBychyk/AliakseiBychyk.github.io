@@ -1,6 +1,6 @@
 import DOMManipulationUtilities from './DOMManipulationUtilities.js';
 
-export function app() {
+const app = ( () => {
 
   const apiKey = '2f49b9f8b3fc474888e9f02575e4cdd6';
   const newsSource = 'bbc-news';
@@ -16,7 +16,7 @@ export function app() {
       const dom = DOMManipulationUtilities;
 
       const headerSource = json.source.toUpperCase();
-      dom.addElement(headerSource, newsHeader);
+      dom.addBlock(headerSource, newsHeader);
 
       const newsSourceText = 'News powered by: News API';
       dom.addLink(urlLink, newsSourceText, newsHeader);
@@ -27,7 +27,7 @@ export function app() {
         newsArticle.setAttribute('class', 'article');
         const artKeys = Object.keys(article);
 
-        artKeys.slice(0, 3).forEach(key => dom.addElement(article[key], newsArticle));
+        artKeys.slice(0, 3).forEach(key => dom.addBlock(article[key], newsArticle));
 
         const alt = article.title;
         const urlToImg = article.urlToImage;
@@ -41,4 +41,6 @@ export function app() {
       });
     })
     .catch(error => console.log("Unexpected error: " + error));
-};
+})();
+
+export default app;
