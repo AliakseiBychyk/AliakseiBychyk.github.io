@@ -1,11 +1,11 @@
 import DOMManipulationUtilities from './DOMManipulationUtilities.js';
-import dataSource from './dataSource.json'
+import dataSource from './dataSource.json';
 
 const app = ( () => {
 
-  const url = dataSource[url] + `${dataSource[apiKey]}`;
-  const urlLink = dataSource[urlLink];
-  const newsSource = dataSource[newsSource];
+  const url = dataSource.url + "source=" + dataSource.newsSource + "&apiKey=" + dataSource.apiKey;
+  const urlLink = dataSource.urlLink;
+  const newsSource = dataSource.newsSource;
 
   fetch(url)
     .then(response => response.json())
@@ -23,7 +23,7 @@ const app = ( () => {
 
       json.articles.forEach(article => {
 
-        const newsArticle = dom._create.div()
+        const newsArticle = document.createElement('div');
         newsArticle.setAttribute('class', 'article');
         const artKeys = Object.keys(article);
 

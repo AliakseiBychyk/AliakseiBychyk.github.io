@@ -1,6 +1,6 @@
 {
   "apiKey": "2f49b9f8b3fc474888e9f02575e4cdd6",
   "newsSource": "bbc-news",
-  "url": "https://newsapi.org/v1/articles?source=${newsSource}&apiKey=",
+  "url": "https://newsapi.org/v1/articles?",
   "urlLink": "http://newsapi.org"
 }
