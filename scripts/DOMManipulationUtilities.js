@@ -21,8 +21,13 @@ const DOMManipulationUtilities = (() => {
 
   return {
 
-    addBlock: (content, place) => {
+    addBlock: (content, place, classAttr) => {
       const newBlock = _create.div();
+      const attrNames = ['class'];
+      const attrValues = [classAttr];
+      attrNames.forEach(attrName => {
+        addAttribute(newBlock, attrValues).next().add(attrName);
+      });
       newBlock.innerHTML = content;
       place.appendChild(newBlock);
     },
@@ -40,7 +45,7 @@ const DOMManipulationUtilities = (() => {
       const attrValues = [url, alt, classAttr];
       attrNames.forEach(attrName => {
         addAttribute(newImg, attrValues).next().add(attrName);
-      })
+      });
       newImg.innerHTML;
       place.appendChild(newImg);
     },

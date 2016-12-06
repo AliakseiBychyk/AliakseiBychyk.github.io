@@ -23,7 +23,7 @@ const app = ( () => {
 
       json.articles.forEach(article => {
 
-        const newsArticle = document.createElement('div');
+        const newsArticle = dom._create.div()
         newsArticle.setAttribute('class', 'article');
         const artKeys = Object.keys(article);
 
