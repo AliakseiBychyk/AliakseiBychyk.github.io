@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
 
   entry: {
-    start: ["./scripts/start.js"]
+    index: ["./scripts/index.js"]
   },
 
   output: {

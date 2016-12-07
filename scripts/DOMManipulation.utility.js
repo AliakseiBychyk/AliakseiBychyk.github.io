@@ -1,5 +1,8 @@
 const DOMManipulationUtilities = (() => {
 
+ // Module DOMManipulationUtilities is created using Module Pattern
+
+  // Here I use Facade Pattern to use subcomponents below
   const _create = {
     div: () => document.createElement('div'),
     a: () => document.createElement('a'),
@@ -7,6 +10,7 @@ const DOMManipulationUtilities = (() => {
     button: () => document.createElement('button')
   }
 
+  // Here I use Iterator Pattern to iterate through arrays as much as it needed and implement some logic
   function addAttribute(element, array) {
     let nextIndex = 0;
     return {

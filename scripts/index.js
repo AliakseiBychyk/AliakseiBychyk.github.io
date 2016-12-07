@@ -1,4 +1,4 @@
-import DOMManipulationUtilities from './DOMManipulationUtilities.js';
+import DOMManipulationUtilities from './DOMManipulation.utility.js';
 
 const newsHeader = document.querySelector('#header');
 const dom = DOMManipulationUtilities;
