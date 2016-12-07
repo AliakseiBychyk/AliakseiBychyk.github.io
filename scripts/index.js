@@ -1,7 +1,7 @@
-import DOMManipulationUtilities from './DOMManipulation.utility.js';
+import DOMManipulation from './DOMManipulation.utility.js';
 
 const newsHeader = document.querySelector('#header');
-const dom = DOMManipulationUtilities;
+const dom = DOMManipulation;
 
 dom.addButton('button', 'start-button', 'Show the BBC news', newsHeader);
 

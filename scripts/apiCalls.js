@@ -1,4 +1,4 @@
-import DOMManipulationUtilities from './DOMManipulation.utility.js';
+import DOMManipulation from './DOMManipulation.utility.js';
 import dataSource from './app.config.json';
 
 const apiCalls = (() => {
@@ -8,7 +8,7 @@ const apiCalls = (() => {
   const newsSource = dataSource.newsSource;
   const newsHeader = document.querySelector('#header');
   const newsBlock = document.querySelector('main');
-  const dom = DOMManipulationUtilities;
+  const dom = DOMManipulation;
   const newsSourceText = 'News powered by: News API';
 
   return {

@@ -1,4 +1,4 @@
-const DOMManipulationUtilities = (() => {
+const DOMManipulation = (() => {
 
  // Module DOMManipulationUtilities is created using Module Pattern
 
@@ -64,4 +64,4 @@ const DOMManipulationUtilities = (() => {
   }
 })();
 
-export default DOMManipulationUtilities;
+export default DOMManipulation;
